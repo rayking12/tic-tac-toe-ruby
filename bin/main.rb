@@ -5,11 +5,6 @@ class TicTacToe
   def initialize
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 	end
-	
-	# Winning numbers
-    # WINNING NUMBERS = [[1,2,3],[4,5,6],[7,8,9],[1,5,9],[3,5,7]]
-    
-     
 
 	def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
@@ -24,19 +19,22 @@ class TicTacToe
 			@board[0] = arr
 		end
 		return @board
-    end
+	end
+		
     def input_to_index(input)
     input.to_i - 1
     end
 
     def move (position, token ="X")
         @board[position] = token
-    end
+		end
+		
     def position_taken?(input)
         @board[input] == "X" || @board[input] == "O"
-    end
+		end
+		
     def valid_move?(input)
-        input.between?(0, 9) && !position_taken?(input)
+        input.between?(0, 9) && !position_taken?(input) && input.char?
     end
 
     # getting user input
@@ -50,13 +48,14 @@ class TicTacToe
             self
         end
         display_board
-    end
+		end
+		
     def turn_counts
         taken_spot = 0
         @board.each do |i|
-            if i == "X" || i == "O"
-                taken_spot += 1
-            end
+					if i == "X" || i == "O"
+						taken_spot += 1
+					end
         end
         return taken_spot
     end
@@ -64,9 +63,9 @@ class TicTacToe
     def current_player
         players = nil
         if turn_counts() % 2 == 0
-            players = "X"
+					players = "X"
         else
-            players = "O"
+					players = "O"
         end
         return players
     end
