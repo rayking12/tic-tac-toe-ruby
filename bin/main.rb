@@ -7,13 +7,9 @@ class TicTacToe
 	end
 	
 	# Winning numbers
-	WINNING NUMBERS = [[1,2,3],[4,5,6],[7,8,9],[1,5,9],[3,5,7]]
-# getting user input
-	def user_input
-		puts "Choose a number between 1 to 9 to the play game"
-		inputs = gets.chomp
-		inputs.to_i - 1
-	end
+    # WINNING NUMBERS = [[1,2,3],[4,5,6],[7,8,9],[1,5,9],[3,5,7]]
+    
+     
 
 	def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
@@ -23,15 +19,60 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
 	end
 
-	def user_input_to_doard(num)
-
-		if num	== (1..9) 
-			@board[0] = num
+	def user_input_to_doard(arr)
+		if arr	== (1..9) 
+			@board[0] = arr
 		end
 		return @board
-	end
+    end
+    def input_to_index(input)
+    input.to_i - 1
+    end
+
+    def move (position, token ="X")
+        @board[position] = token
+    end
+    def position_taken?(input)
+        @board[input] == "X" || @board[input] == "O"
+    end
+    def valid_move?(input)
+        input.between?(0, 9) && !position_taken?(input)
+    end
+
+    # getting user input
+	def user_input
+		puts "Choose a number between 1 to 9 to the play game"
+		inputs = gets.strip
+        inputs = input_to_index(inputs)
+        if valid_move?(inputs)
+            move(inputs, current_player)
+        else
+            self
+        end
+        display_board
+    end
+    def turn_counts
+        taken_spot = 0
+        @board.each do |i|
+            if i == "X" || i == "O"
+                taken_spot += 1
+            end
+        end
+        return taken_spot
+    end
+
+    def current_player
+        players = nil
+        if turn_counts() % 2 == 0
+            players = "X"
+        else
+            players = "O"
+        end
+        return players
+    end
+
 	
 end
 
 game = TicTacToe.new
-game.display_board
+game.user_input
