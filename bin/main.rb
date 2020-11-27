@@ -45,15 +45,6 @@ class TicTacToe
     input.between?(0, 9) && !position_taken?(input)
   end
 
-  def name
-    puts 'Player1: what is Your name?'
-    @name = gets.chomp
-    puts 'Welcome ' + @name
-    puts 'Player2: What is your name?'
-    @name_two = gets.chomp
-    puts 'Player2 : Welcome ' + @name_two
-  end
-
   # getting user input
   def user_input
     puts 'Choose a number between 1 to 9 to play game'
@@ -78,12 +69,12 @@ class TicTacToe
   end
 
   def current_player
-    players = if turn_counts.even?
-                'X'
-              else
-                'O'
-              end
-    players
+    @players = if turn_counts.even?
+                 'X'
+               else
+                 'O'
+               end
+    @players
   end
 
   def win?
@@ -109,13 +100,28 @@ class TicTacToe
     draw? || win?
   end
 
+  def name
+    puts 'Player1: what is Your name?'
+    @name = gets.chomp
+    puts 'Welcome ' + @name
+    puts 'Player2: What is your name?'
+    @name_two = gets.strip
+    puts 'Player2 : Welcome ' + @name_two
+  end
+
   def winner
     player = ''
-    player == win? ? @board[winner.first] : false
+    player == win? ? @board[winner.first] : @players
   end
 
   def game_play
     user_input until game_over?
+    if win?
+      winner = winner()
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cat's Game!"
+    end
   end
 end
 
