@@ -108,10 +108,8 @@ class TicTacToe
   end
 
   def winner
-    win = ''
-    if winner == win?
-      win = @board[winner.first]
-    end
+    player = ''
+    player == win? ? @board[winner.first] : false
   end
 
   def game_play
