@@ -56,7 +56,7 @@ class TicTacToe
 
   # getting user input
   def user_input
-    puts 'Choose a number between 1 to 9 to the play game'
+    puts 'Choose a number between 1 to 9 to play game'
     inputs = gets.strip
     inputs = input_to_index(inputs)
     if valid_move?(inputs)
@@ -82,15 +82,25 @@ class TicTacToe
                 'O'
               end
     players
-  end
+	end
+	
+	def win? 
+		WIN_COMBINATIONS.detect do |win_combination| 
+			if win_combination[0] == @board[0] && win_combination[1] == @board[0]
+				return true
+	end
 
   def game_on?
-    turn_counts == 9
-  end
+    turn_counts == 9 || !win? ? true : game_play?
+	end
+	
+	def draw?
+		!win? && (@board == 'X' || @board == 'O') 
+	end
 
   def game_over?
-    game_on?
-  end
+		win? || draw?
+	end
 
   def game_play
     user_input until game_over?
