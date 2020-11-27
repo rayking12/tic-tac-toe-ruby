@@ -82,8 +82,8 @@ class TicTacToe
                 'O'
               end
     players
-	end
-	
+  end
+  
   def win?
     WIN_COMBINATIONS.each_with_index do |elem, child_arr|
       @board[child_arr[0]] == @board[child_arr[1]] &&
@@ -92,30 +92,30 @@ class TicTacToe
     end
   end
 
-	def game_full?(board)
-		board.all? {|i| i == "X" || i == "O"}
+  def game_full?(board)
+    board.all? {|i| i == "X" || i == "O"}
  end
 
   def game_on?
     turn_counts < 9 && !win? ? true : false
-	end
-	
-	def draw?
-	!win? && game_full?
+  end
+  
+  def draw?
+  !win? && game_full?
  end
 
-	def game_over?
-		if draw? || win? || game_full?
-			return true
-		end
-		board
+  def game_over?
+    if draw? || win? || game_full?
+      return true
+    end
+    board
  end
 
   def game_play
     user_input until game_over?
-	end
-
+  end
 end
+
 game = TicTacToe.new
 game.name
 game.game_play
