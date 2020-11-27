@@ -45,6 +45,15 @@ class TicTacToe
     input.between?(0, 9) && !position_taken?(input)
   end
 
+  def name
+    puts 'Player1: what is Your name?'
+    @name = gets.chomp
+    puts 'Welcome ' + @name
+    puts 'Player2: What is your name?'
+    @name_two = gets.chomp
+    puts 'Player2 : Welcome ' + @name_two
+  end
+
   # getting user input
   def user_input
     puts 'Choose a number between 1 to 9 to the play game'
@@ -88,4 +97,5 @@ class TicTacToe
   end
 end
 game = TicTacToe.new
+game.name
 game.game_play
