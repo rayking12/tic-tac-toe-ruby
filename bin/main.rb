@@ -92,7 +92,7 @@ class TicTacToe
   end
 
   def game_full?
-    board.all? { |i| ['O', 'X'].include?(i) }
+    board.all? { |i| %w[O X].include?(i) }
   end
 
   def game_on?
@@ -106,10 +106,10 @@ class TicTacToe
   def game_over?
     draw? || win?
   end
-  
+
   def winner
     win = ''
-    if winner = win?
+    if winner == win?
       win = @board[winner.first]
     end
   end
