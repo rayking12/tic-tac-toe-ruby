@@ -104,7 +104,7 @@ class TicTacToe
   end
 
   def game_over?
-    draw? || win? || game_full? ? true : false
+    draw? || win? || game_full? ? game_on? : false
   end
 
   def game_play
