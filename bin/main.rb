@@ -5,6 +5,16 @@ class TicTacToe
   def initialize
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
+  WIN_COMBINATIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [6, 4, 2],
+    [0, 4, 8]
+  ].freeze
 
   def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
@@ -55,16 +65,27 @@ class TicTacToe
     end
     taken_spot
   end
-end
 
-def current_player
-  players = if turn_counts.even?
-              'X'
-            else
-              'O'
-            end
-  players
-end
+  def current_player
+    players = if turn_counts.even?
+                'X'
+              else
+                'O'
+              end
+    players
+  end
 
+  def game_on?
+    turn_counts == 9
+  end
+
+  def game_over?
+    game_on?
+  end
+
+  def game_play
+    user_input until game_over?
+  end
+end
 game = TicTacToe.new
-game.user_input
+game.game_play
