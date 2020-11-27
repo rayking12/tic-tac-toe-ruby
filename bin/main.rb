@@ -42,7 +42,7 @@ class TicTacToe
   end
 
   def valid_move?(input)
-    input.between?(0, 9) && !position_taken?(input)
+    input.between?(0, 9) && !position_taken?(input)  
   end
 
   def name
@@ -61,6 +61,8 @@ class TicTacToe
     inputs = input_to_index(inputs)
     if valid_move?(inputs)
       move(inputs, current_player)
+    elsif !valid_move?(inputs)
+      puts "Invalid move! Make a valid move from the unoccupied position"
     else
       self
     end
