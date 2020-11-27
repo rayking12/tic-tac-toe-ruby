@@ -85,14 +85,14 @@ class TicTacToe
   end
 
   def win?
-    WIN_COMBINATIONS.select do |child_arr|
+    WIN_COMBINATIONS.detect do |child_arr|
       @board[child_arr[0]] == @board[child_arr[1]] && @board[child_arr[1]] == @board[child_arr[2]] &&
         position_taken?(child_arr[0])
     end
   end
 
-  def game_full?(board)
-    board.all? { |i| i.include?['O', 'X'] }
+  def game_full?
+    board.all? { |i| ['O', 'X'].include?(i) }
   end
 
   def game_on?
@@ -104,7 +104,14 @@ class TicTacToe
   end
 
   def game_over?
-    draw? || win? || game_full? ? game_on? : false
+    draw? || win?
+  end
+  
+  def winner
+    win = ''
+    if winner = win?
+      win = @board[winner.first]
+    end
   end
 
   def game_play
