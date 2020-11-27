@@ -61,6 +61,8 @@ class TicTacToe
     inputs = input_to_index(inputs)
     if valid_move?(inputs)
       move(inputs, current_player)
+    elsif !valid_move?(inputs)
+      puts 'Invalid move! Make a valid move from the unoccupied position'
     else
       self
     end
@@ -85,14 +87,14 @@ class TicTacToe
   end
 
   def win?
-    WIN_COMBINATIONS.select do |child_arr|
+    WIN_COMBINATIONS.detect do |child_arr|
       @board[child_arr[0]] == @board[child_arr[1]] && @board[child_arr[1]] == @board[child_arr[2]] &&
         position_taken?(child_arr[0])
     end
   end
 
-  def game_full?(board)
-    board.all? { |i| i.include?['O', 'X'] }
+  def game_full?
+    board.all? { |i| %w[O X].include?(i) }
   end
 
   def game_on?
@@ -104,7 +106,12 @@ class TicTacToe
   end
 
   def game_over?
-    draw? || win? || game_full? ? game_on? : false
+    draw? || win?
+  end
+
+  def winner
+    player = ''
+    player == win? ? @board[winner.first] : false
   end
 
   def game_play
