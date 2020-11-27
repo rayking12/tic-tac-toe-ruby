@@ -85,7 +85,7 @@ class TicTacToe
   end
 
   def win?
-    WIN_COMBINATIONS.each do |child_arr|
+    WIN_COMBINATIONS.select do |child_arr|
       @board[child_arr[0]] == @board[child_arr[1]] && @board[child_arr[1]] == @board[child_arr[2]] &&
         position_taken?(child_arr[0])
     end
