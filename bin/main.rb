@@ -83,33 +83,29 @@ class TicTacToe
               end
     players
   end
-  
+
   def win?
-    WIN_COMBINATIONS.each_with_index do |elem, child_arr|
-      @board[child_arr[0]] == @board[child_arr[1]] &&
-      @board[child_arr[1]] == @board[child_arr[2]] &&
-      position_taken?(child_arr[0])
+    WIN_COMBINATIONS.each do |child_arr|
+      @board[child_arr[0]] == @board[child_arr[1]] && @board[child_arr[1]] == @board[child_arr[2]] &&
+        position_taken?(child_arr[0])
     end
   end
 
   def game_full?(board)
-    board.all? {|i| i == "X" || i == "O"}
- end
+    board.all? { |i| i.include?['O', 'X'] }
+  end
 
   def game_on?
     turn_counts < 9 && !win? ? true : false
   end
-  
+
   def draw?
-  !win? && game_full?
- end
+    !win? && game_full?
+  end
 
   def game_over?
-    if draw? || win? || game_full?
-      return true
-    end
-    board
- end
+    draw? || win? || game_full? ? true : false
+  end
 
   def game_play
     user_input until game_over?
