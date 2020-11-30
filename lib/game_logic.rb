@@ -37,13 +37,13 @@ class GameLogic
   def name
     puts 'Player1: what is Your name?'
     @name = gets.chomp
-    if @name.to_s? 
+    if @name.is_a?(String) 
        puts 'Welcome ' + @name 
        else
         return gets.chomp
     puts 'Player2: What is your name?'
-    @name_two = gets.strip
-    if @name_two.to_s?
+    @name_two = gets.chomp
+    if @name_two.
     puts 'Player2 : Welcome ' + @name_two
     else
       return gets.chomp

@@ -117,16 +117,28 @@ class TicTacToe
   def name
     puts 'Player1: what is Your name?'
     @name = gets.chomp
-    if !@name == @name.empty?
-      puts 'Welcome ' + @name
+    case @name
+    when /\D/ 
+      puts "Welcome " + @name
     else
+      puts "Please put in a valid input"
       gets.chomp
     end
-    puts 'Player2: What is your name?'
-    if !@name == @name.empty?
-      puts 'Player2 : Welcome ' + @name_two
+    while @name =~ /^-?[0-9]+$/  
+      name
+    end
+  
+    puts 'Player2: what is Your name?'
+    @name_two = gets.chomp
+    case @name_two
+    when /\D/ 
+      puts "Welcome " + @name_two
     else
+      puts "Please put in a valid input"
       gets.chomp
+    end
+    while @name_two =~ /^-?[0-9]+$/  
+      name
     end
   end
 
