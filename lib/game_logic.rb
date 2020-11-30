@@ -34,21 +34,6 @@ class GameLogic
     draw? || win?
   end
 
-  def name
-    puts 'Player1: what is Your name?'
-    @name = gets.chomp
-    if @name.is_a?(String) 
-       puts 'Welcome ' + @name 
-       else
-        return gets.chomp
-    puts 'Player2: What is your name?'
-    @name_two = gets.chomp
-    if @name_two.
-    puts 'Player2 : Welcome ' + @name_two
-    else
-      return gets.chomp
-  end
-
   def winner
     player = ''
     player == win? ? @board[winner.first] : @players
