@@ -1,12 +1,13 @@
 #!/usr/bin/env ruby
 class TicTacToe
-  require_relative '../lib/game_logic'
+  # require_relative '../lib/game_logic'
 
   attr_accessor :board
 
   def initialize
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
+
   WIN_COMBINATIONS = [
     [0, 1, 2],
     [3, 4, 5],
@@ -79,8 +80,62 @@ class TicTacToe
     @players
   end
 
-  
-  
+  WIN_COMBINATIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [6, 4, 2],
+    [0, 4, 8]
+  ].freeze
+
+  def win?
+    WIN_COMBINATIONS.detect do |child_arr|
+      @board[child_arr[0]] == @board[child_arr[1]] && @board[child_arr[1]] == @board[child_arr[2]] &&
+        position_taken?(child_arr[0])
+    end
+  end
+
+  def game_full?
+    board.all? { |i| %w[O X].include?(i) }
+  end
+
+  def game_on?
+    turn_counts < 9 && !win? ? true : false
+  end
+
+  def draw?
+    !win? && game_full?
+  end
+
+  def game_over?
+    draw? || win?
+  end
+
+  def name
+    puts 'Player1: what is Your name?'
+    @name = gets.chomp
+    if !@name == @name.empty?
+      puts 'Welcome ' + @name
+    else
+      gets.chomp
+    end
+    puts 'Player2: What is your name?'
+    if !@name == @name.empty?
+      puts 'Player2 : Welcome ' + @name_two
+    else
+      gets.chomp
+    end
+  end
+
+  def winner
+    player = ''
+    player == win? ? @board[winner.first] : @players
+  end
+
+  # GameLogic = GameLogic.new
   def game_play
     user_input until game_over?
     if win?
@@ -92,6 +147,6 @@ class TicTacToe
   end
 end
 
-GameLogic = GameLogic.new
 game = TicTacToe.new
+game.name
 game.game_play
