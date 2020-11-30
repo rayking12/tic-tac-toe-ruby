@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 class TicTacToe
-  require_relative 'lib/game_logic'
+  require_relative '../lib/game_logic'
 
   attr_accessor :board
 
@@ -79,8 +79,8 @@ class TicTacToe
     @players
   end
 
-  GameLogic.new
-
+  
+  
   def game_play
     user_input until game_over?
     if win?
@@ -92,6 +92,6 @@ class TicTacToe
   end
 end
 
+GameLogic = GameLogic.new
 game = TicTacToe.new
-game.name
 game.game_play
