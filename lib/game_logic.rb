@@ -44,7 +44,7 @@ class GameLogic
   end
 end
 class TicTacToe < GameLogic
-  attr_accessor :board
+  attr_reader :board
   include WinNumbers
   def initialize
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
