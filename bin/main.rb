@@ -1,6 +1,18 @@
 #!/usr/bin/env ruby
+module WinNumbers
+  WIN_COMBINATIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [6, 4, 2],
+    [0, 4, 8]
+  ].freeze
+end
 class TicTacToe
-  require_relative '../lib/game_logic'
+  include WinNumbers
   def initialize
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
@@ -33,6 +45,12 @@ class TicTacToe
   def current_player
     @players = turn_counts.even? ? 'X' : 'O'
     @players
+  end
+
+  def player_name1
+    puts 'you are the first player, Enter your name'
+    @player = names
+    puts 'welcome' + @player
   end
 
   def win?
@@ -69,7 +87,3 @@ class TicTacToe
     taken_spot
   end
 end
-games = GameLogic.new
-game = TicTacToe.new
-game.display_board
-games.game_play
