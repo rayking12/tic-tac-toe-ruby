@@ -80,7 +80,7 @@ class TicTacToe < GameLogic
     @players
   end
 
-  def player_name1
+  def player_name
     puts 'you are the first player, Enter your name'
     @player = names
     puts 'welcome' + @player
