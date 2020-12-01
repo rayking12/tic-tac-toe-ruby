@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 module WinNumbers
   WIN_COMBINATIONS = [
     [0, 1, 2],
