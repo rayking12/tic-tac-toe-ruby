@@ -11,6 +11,7 @@ module WinNumbers
     [0, 4, 8]
   ].freeze
 end
+
 class GameLogic
   def valid_move?(input)
     input.between?(0, 9) && !position_taken?(input)
