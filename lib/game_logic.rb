@@ -40,7 +40,7 @@ class GameLogic
       winner = winner()
       puts "Congratulations #{winner}!"
     elsif draw?
-      puts 'Good try, You draw !'
+      puts 'Good try, You draw!'
     end
   end
 end
