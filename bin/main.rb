@@ -4,7 +4,7 @@ class Play
   def names
     @name = gets.chomp
     case @name
-    when /\D/
+		when /\D/
       puts 'Welcome ' + @name
     else
       puts 'Please do not enter numbers or symbols'
