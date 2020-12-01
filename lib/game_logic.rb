@@ -21,7 +21,7 @@ class GameLogic
   end
 
   def draw?
-    !win? && game_full?
+    !win? && game_fill?
   end
 
   def game_over?
@@ -32,16 +32,9 @@ class GameLogic
     player = ''
     player == win? ? @board[winner.first] : @players
   end
+  
 
-  def game_play
-    user_input until game_over?
-    if win?
-      winner = winner()
-      puts "Congratulations #{winner}!"
-    elsif draw?
-      puts 'Good try, You draw!'
-    end
-  end
+ 
 end
 class TicTacToe < GameLogic
   attr_reader :board
@@ -80,11 +73,7 @@ class TicTacToe < GameLogic
     @players
   end
 
-  def player_name
-    puts 'you are the first player, Enter your name'
-    @player = names
-    puts 'welcome' + @player
-  end
+  
 
   def win?
     WIN_COMBINATIONS.detect do |child_arr|
@@ -97,20 +86,7 @@ class TicTacToe < GameLogic
     board.all? { |i| %w[O X].include?(i) }
   end
 
-  # getting user input
-  def user_input
-    puts 'Choose a number between 1 to 9 to play game'
-    inputs = gets.strip
-    inputs = input_to_index(inputs)
-    if valid_move?(inputs)
-      move(inputs, current_player)
-    elsif !valid_move?(inputs)
-      puts 'Invalid move! Make a valid move from the unoccupied position'
-    else
-      self
-    end
-    display_board
-  end
+ 
 
   def turn_counts
     taken_spot = 0
