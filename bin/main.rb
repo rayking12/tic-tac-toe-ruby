@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require_relative '../lib/game_logic'
 class Play
   def names
