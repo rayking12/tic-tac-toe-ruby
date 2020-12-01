@@ -21,7 +21,7 @@ class GameLogic
   end
 
   def draw?
-    !win? && game_fill?
+    !win? && game_full?
   end
 
   def game_over?
@@ -32,9 +32,6 @@ class GameLogic
     player = ''
     player == win? ? @board[winner.first] : @players
   end
-  
-
- 
 end
 class TicTacToe < GameLogic
   attr_reader :board
@@ -73,7 +70,9 @@ class TicTacToe < GameLogic
     @players
   end
 
-  
+  def game_over?
+    draw? || win?
+  end
 
   def win?
     WIN_COMBINATIONS.detect do |child_arr|
@@ -85,8 +84,6 @@ class TicTacToe < GameLogic
   def game_full?
     board.all? { |i| %w[O X].include?(i) }
   end
-
- 
 
   def turn_counts
     taken_spot = 0
