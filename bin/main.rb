@@ -22,9 +22,10 @@ class Play
     puts 'Hi, Welcome second player, please enter your name'
     names
     player2 while @name =~ /^-?[0-9]+$/
+      game = GameLogic.new
 
     def game_play
-      user_input until TicTacToe.new.game_over?
+      user_input until game.game_over?
       if TicTacToe.new.win?
         winner = winner()
         puts "Congratulations #{@name}!"
