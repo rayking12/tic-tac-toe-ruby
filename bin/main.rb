@@ -15,14 +15,14 @@ class Play
   def player1
     puts 'Hi,Welcome first player, please enter your name'
     names
-    player1 while @name =~ /^-?[0-9]+$/
+    player1 while @name =~ /^-?[0-9]+$/ || @name == ''
   end
 
   def player2
     puts 'Hi, Welcome second player, please enter your name'
     names
-    player2 while @name =~ /^-?[0-9]+$/
-  end
+    player2 while @name =~ /^-?[0-9]+$/ || @name == ''
+    end
 
   def game_play
     game = TicTacToe.new
@@ -38,11 +38,12 @@ class Play
 
   def welcome
     puts "player #{TicTacToe.new.current_player} Choose a number between 1 to 9 to play game"
+    @inputs = gets.strip
+    @inputs = TicTacToe.new.input_to_index(inputs)
   end
 
   def inputs
-    inputs = gets.strip
-    inputs = TicTacToe.input_to_index(inputs)
+    @inputs
   end
 
   def invalid
