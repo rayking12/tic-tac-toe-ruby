@@ -92,8 +92,7 @@ class TicTacToe < GameLogic
     taken_spot
   end
 
-  # getting user input
-  def user_input
+  def user
     play = Play.new
     play.welcome
     puts "#{current_player} its your turn"

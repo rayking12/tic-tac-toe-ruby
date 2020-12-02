@@ -26,7 +26,7 @@ class Play
 
   def game_play
     game = TicTacToe.new
-    game.user_input until game.game_over?
+    game.user until game.game_over?
     if game.win?
       @winner = game.winner
       @winner = @name
