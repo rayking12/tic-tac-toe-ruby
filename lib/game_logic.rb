@@ -56,13 +56,13 @@ class TicTacToe < GameLogic
   def input_to_index(input)
     input.to_i - 1
   end
-                                                                        
+
   def move(position, token = 'X')
     @board[position] = token
   end
 
   def position_taken?(input)
-    @board[input] == 'X' || @board[input] == 'O'                                                            
+    @board[input] == 'X' || @board[input] == 'O'
   end
 
   def current_player
