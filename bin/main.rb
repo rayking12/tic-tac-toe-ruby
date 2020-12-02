@@ -15,43 +15,39 @@ class Play
   def player1
     puts 'Hi,Welcome first player, please enter your name'
     names
-    return !@name =~ /^-?[0-9]+$/
-      player1
-    end
+    player1 while @name =~ /^-?[0-9]+$/
   end
 
   def player2
     puts 'Hi, Welcome second player, please enter your name'
     names
-    unless !@name =~ /^-?[0-9]+$/
-      player2
-    end
-  end
+    player2 while @name =~ /^-?[0-9]+$/
 
-  def game_play
-    user_input until game_over?
-    if TicTacToe.new.win?
-      winner = winner()
-      puts "Congratulations #{@name}!"
-    elsif draw?
-      puts 'Good try, You draw!'
+    def game_play
+      user_input until TicTacToe.new.game_over?
+      if TicTacToe.new.win?
+        winner = winner()
+        puts "Congratulations #{@name}!"
+      elsif draw?
+        puts 'Good try, You draw!'
+      end
     end
-  end
 
-  # getting user input
-  def user_input
-    puts 'Choose a number between 1 to 9 to play game'
-    inputs = gets.strip
-    inputs = TicTacToe.new.input_to_index(inputs)
-    if TicTacToe.new.valid_move?(inputs)
-      TicTacToe.new.move(inputs, TicTacToe.new.current_player)
-    elsif !TicTacToe.new.valid_move?(inputs)
-      puts 'Invalid move! Make a valid move from the unoccupied position'
-    else
-      self
+    # getting user input
+    def user_input
+      puts 'Choose a number between 1 to 9 to play game'
+      inputs = gets.strip
+      inputs = TicTacToe.new.input_to_index(inputs)
+      if TicTacToe.new.valid_move?(inputs)
+        TicTacToe.new.move(inputs, TicTacToe.new.current_player)
+      elsif !TicTacToe.new.valid_move?(inputs)
+        puts 'Invalid move! Make a valid move from the unoccupied position'
+      else
+        self
+      end
+      TicTacToe.new.display_board
     end
-    TicTacToe.new.display_board
-  end
+end
 end
 
 plays = Play.new
