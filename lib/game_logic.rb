@@ -94,8 +94,8 @@ class TicTacToe < GameLogic
 
   def user
     play = Play.new
+    play.turn(current_player)
     play.welcome
-    puts "#{current_player} its your turn"
     play.input
     if valid_move?(play.input)
       move(play.input, current_player)

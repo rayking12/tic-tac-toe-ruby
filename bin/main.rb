@@ -42,6 +42,11 @@ class Play
     @inputs = TicTacToe.new.input_to_index(@inputs)
   end
 
+  def turn(playern)
+    @turn_name = playern
+    puts 'it is your turn ' + @turn_name
+  end
+
   def input
     @inputs
   end
