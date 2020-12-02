@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative '../lib/game_logic'
+require_relative '../lib/game_logic.rb'
 class Play
   def names
     @name = gets.chomp
