@@ -26,29 +26,27 @@ class Play
 
   def game_play
     game = TicTacToe.new
-    user_input until game.game_over?
+    game.user_input until game.game_over?
     if game.win?
-      winner = winner()
-      puts "Congratulations #{winner}!"
-    elsif draw?
+      @winner = game.winner
+      @winner = @name
+      puts "Congratulations #{@name}!"
+    elsif game.draw?
       puts 'Good try, You draw!'
     end
   end
 
-  # getting user input
-  def user_input
-    game = TicTacToe.new
-    puts 'Choose a number between 1 to 9 to play game'
+  def welcome
+    puts "player #{TicTacToe.new.current_player} Choose a number between 1 to 9 to play game"
+  end
+
+  def inputs
     inputs = gets.strip
-    inputs = game.input_to_index(inputs)
-    if game.valid_move?(inputs)
-      game.move(inputs, game.current_player)
-    elsif !game.valid_move?(inputs)
-      puts 'Invalid move! Make a valid move from the unoccupied position'
-    else
-      self
-    end
-    game.display_board
+    inputs = TicTacToe.input_to_index(inputs)
+  end
+
+  def invalid
+    puts 'Invalid move! Make a valid move from the unoccupied position'
   end
 end
 

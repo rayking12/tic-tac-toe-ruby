@@ -10,7 +10,6 @@ module WinNumbers
     [0, 4, 8]
   ].freeze
 end
-
 class GameLogic
   def valid_move?(input)
     input.between?(0, 9) && !position_taken?(input)
@@ -25,7 +24,7 @@ class GameLogic
   end
 
   def game_over?
-    draw? || win?
+    draw? || win? || game_full
   end
 
   def winner
@@ -91,5 +90,21 @@ class TicTacToe < GameLogic
       taken_spot += 1 if %w[X O].include?(i)
     end
     taken_spot
+  end
+
+  # getting user input
+  def user_input
+    play = Play.new
+    play.welcome
+    play.inputs
+    if valid_move? (play.inputs)
+      
+      move(play.inputs, current_player)
+    elsif valid_move?(play.inputs)
+      play.invalid
+    else
+      self
+    end
+    display_board
   end
 end
