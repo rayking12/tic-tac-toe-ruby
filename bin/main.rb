@@ -24,13 +24,12 @@ class Play
     player2 while @name =~ /^-?[0-9]+$/
   end
 
-  my_game = GameLogic.new
-
   def game_play
-    user_input until TicTacToe.new.game_over?
-    if TicTacToe.new.win?
+    game = TicTacToe.new
+    user_input until game.game_over?
+    if game.win?
       winner = winner()
-      puts "Congratulations #{@name}!"
+      puts "Congratulations #{winner}!"
     elsif draw?
       puts 'Good try, You draw!'
     end
@@ -38,17 +37,18 @@ class Play
 
   # getting user input
   def user_input
+    game = TicTacToe.new
     puts 'Choose a number between 1 to 9 to play game'
     inputs = gets.strip
-    inputs = TicTacToe.new.input_to_index(inputs)
-    if TicTacToe.new.valid_move?(inputs)
-      TicTacToe.new.move(inputs, TicTacToe.new.current_player)
-    elsif !TicTacToe.new.valid_move?(inputs)
+    inputs = game.input_to_index(inputs)
+    if game.valid_move?(inputs)
+      game.move(inputs, game.current_player)
+    elsif !game.valid_move?(inputs)
       puts 'Invalid move! Make a valid move from the unoccupied position'
     else
       self
     end
-    TicTacToe.new.display_board
+    game.display_board
   end
 end
 
