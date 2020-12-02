@@ -22,7 +22,7 @@ class Play
     puts 'Hi, Welcome second player, please enter your name'
     names
     player2 while @name =~ /^-?[0-9]+$/ || @name == ''
-    end
+  end
 
   def game_play
     game = TicTacToe.new
@@ -37,12 +37,12 @@ class Play
   end
 
   def welcome
-    puts "player #{TicTacToe.new.current_player} Choose a number between 1 to 9 to play game"
+    puts 'Choose a number between 1 to 9 to play game'
     @inputs = gets.strip
-    @inputs = TicTacToe.new.input_to_index(inputs)
+    @inputs = TicTacToe.new.input_to_index(@inputs)
   end
 
-  def inputs
+  def input
     @inputs
   end
 

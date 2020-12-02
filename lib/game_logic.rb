@@ -95,12 +95,12 @@ class TicTacToe < GameLogic
   # getting user input
   def user_input
     play = Play.new
-    current_player
     play.welcome
-    play.inputs
-    if valid_move?(play.inputs)
-      move(play.inputs, current_player)
-    elsif !valid_move?(play.inputs)
+    puts "#{current_player} its your turn"
+    play.input
+    if valid_move?(play.input)
+      move(play.input, current_player)
+    elsif !valid_move?(play.input)
       play.invalid
     else
       self
