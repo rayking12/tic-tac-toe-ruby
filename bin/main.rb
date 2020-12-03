@@ -4,7 +4,7 @@ class Play
   def names
     @name = gets.chomp
     case @name
-    when /\D/
+    when /\D/ 
       puts 'Welcome ' + @name
     else
       puts 'Please do not enter numbers or symbols'
@@ -24,7 +24,7 @@ class Play
     names
     player2 while @name =~ /^-?[0-9]+$/ || @name == ''
   end
-
+  
   def game_play
     game = TicTacToe.new
     game.user until game.game_over?
