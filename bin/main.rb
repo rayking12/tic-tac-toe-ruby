@@ -8,7 +8,7 @@ class Play
       puts 'Welcome ' + @name
     else
       puts 'Please do not enter numbers or symbols'
-      return self unless @name =~ /^-?[0-9]+$/
+      return self unless @name =~ /^-?[0-9]+$/ || @name == ''
     end
   end
 
@@ -37,7 +37,7 @@ class Play
   end
 
   def welcome
-    puts 'Choose a number between 1 to 9 to play game'
+    puts 'Choose a number between 1 and 9 to play this game'
     @inputs = gets.strip
     @inputs = TicTacToe.new.input_to_index(@inputs)
   end
