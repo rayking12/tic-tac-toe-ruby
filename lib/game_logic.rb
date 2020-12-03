@@ -88,7 +88,6 @@ class TicTacToe < GameLogic
 
   def user
     play = Play.new
-    play.names(current_player)
     play.turn(current_player)
     play.welcome
     play.input
