@@ -1,28 +1,35 @@
 #!/usr/bin/env ruby
 require_relative '../lib/game_logic.rb'
 class Play
-  def names
+  def names(players)
+    @players = players
+    puts 'Please enter your name to play this game'
     @name = gets.chomp
+    @name = @players
     case @name
     when /\D/
       puts 'Welcome ' + @name
     else
       puts 'Please do not enter numbers or symbols'
-      return self unless @name =~ /^-?[0-9]+$/ || @name == ''
+      return self unless @name =~ /^-?[0-9]+$/
     end
   end
 
-  def player1
-    puts 'Hi,Welcome first player, please enter your name'
-    names
-    player1 while @name =~ /^-?[0-9]+$/ || @name == ''
-  end
+  # def player1
+  #   puts 'Hi,Welcome first player, please enter your name'
 
-  def player2
-    puts 'Hi, Welcome second player, please enter your name'
-    names
-    player2 while @name =~ /^-?[0-9]+$/ || @name == ''
-  end
+  # end
+
+  # def player2
+  #   puts 'Hi, Welcome second player, please enter your name'
+  #   names
+  #   player2 unless pname
+  #   player2 while @name =~ /^-?[0-9]+$/ || @name == ''
+  # end
+
+  # def pname
+  #   player1.all?(player2) ? player2 : false
+  # end
 
   def game_play
     game = TicTacToe.new
@@ -57,6 +64,6 @@ class Play
 end
 
 plays = Play.new
-plays.player1
-plays.player2
+# plays.player1
+# plays.player2
 plays.game_play
