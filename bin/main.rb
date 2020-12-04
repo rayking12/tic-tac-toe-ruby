@@ -1,13 +1,6 @@
 #!/usr/bin/env ruby
 require_relative '../lib/game_logic'
 require_relative '../lib/player'
-def display_board
-  puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
-  puts ' ----------- '
-  puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-  puts ' ----------- '
-  puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
-end
 
 # getting player names
 def names
