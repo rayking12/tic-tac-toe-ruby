@@ -82,3 +82,7 @@ Linkedin: [Elisha kyakopo](https://www.linkedin.com/in/elisha-kyakopo-009aa3197/
 
 
 👤 Ray King
+
+GitHub: [@githubhandle](https://github.com/rayking12)
+Twitter: [@twitterhandle](https://twitter.com/_rayKing__)
+LinkedIn: [LinkedIn](https://www.linkedin.com/in/king-ray-514b89133)
