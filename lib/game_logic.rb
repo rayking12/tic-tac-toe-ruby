@@ -1,7 +1,6 @@
-require_relative '../bin/board'
 class GameLogic
   attr_reader :board
-  include Board
+  # include PlayGame
   def valid_move?(input)
     input.between?(0, 9) && !position_taken?(input)
   end

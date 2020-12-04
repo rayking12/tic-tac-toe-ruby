@@ -1,7 +1,13 @@
 #!/usr/bin/env ruby
 require_relative '../lib/game_logic'
 require_relative '../lib/player'
-require_relative '../bin/board'
+def display_board
+  puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+  puts ' ----------- '
+  puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+  puts ' ----------- '
+  puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+end
 
 # getting player names
 def names
@@ -11,21 +17,18 @@ def names
     puts 'Welcome ' + @name
   else
     puts 'Please do not enter numbers or symbols'
-    return self unless @name =~ /^-?[0-9]+$/
-    return self unless @name =~ /^-?[0-9]+$/ || @name == ''
+    names unless @name =~ /[a-zA-Z]/ && !@name.nil? && @name =~ /\S/
   end
 end
 
 def player1
   puts 'Hi,Welcome , please enter your name'
   names
-  player1 while @name =~ /^-?[0-9]+$/ || @name == ''
 end
 
 def player2
   puts 'Hi, Welcome second player, please enter your name'
   names
-  player2 while @name =~ /^-?[0-9]+$/ || @name == ''
 end
 
 def welcome
@@ -64,4 +67,6 @@ def game_play
   end
 end
 
+puts player1
+puts player2
 puts game_play
