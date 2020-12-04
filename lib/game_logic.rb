@@ -1,5 +1,4 @@
 class GameLogic
-  attr_reader :board
   # include PlayGame
   def valid_move?(input)
     input.between?(0, 9) && !position_taken?(input)
@@ -42,6 +41,12 @@ class GameLogic
     @board
   end
 
+  def print_board
+    "  #{@board[0]} | #{@board[1]} | #{@board[2]}\n"\
+   " ----------- \n" + "  #{@board[3]} | #{@board[4]} | #{@board[5]}\n"\
+  " ----------- \n" + "  #{@board[6]} | #{@board[7]} | #{@board[8]}"
+  end
+
   def input_to_index(input)
     input.to_i - 1
   end
@@ -67,7 +72,7 @@ class GameLogic
   end
 
   def game_full?
-    board.all? { |i| %w[O X].include?(i) }
+    @board.all? { |i| %w[O X].include?(i) }
   end
 
   def turn_counts
@@ -93,6 +98,6 @@ class GameLogic
     else
       self
     end
-    display_board
+    print_board
   end
 end
