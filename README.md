@@ -10,7 +10,9 @@ Second Milestone: User interface.
 Third Milestone: Game logic.
 Fourth Milestone: Final touches and instructions for the players.
 
-Live Demo
+## 📺 Live Demo 
+
+[TIC TAC TOE](https://repl.it/@rayKing12/tic-tac-toe-ruby#bin/main.rb)
 
 # Getting Started
 To get a local copy up and running follow these simple steps.
