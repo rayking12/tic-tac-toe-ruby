@@ -1,17 +1,7 @@
-require_relative '../lib/board'
-module WinNumbers
-  WIN_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [6, 4, 2],
-    [0, 4, 8]
-  ].freeze
-end
+require_relative '../bin/board'
 class GameLogic
+  attr_reader :board
+  include Board
   def valid_move?(input)
     input.between?(0, 9) && !position_taken?(input)
   end
@@ -25,21 +15,28 @@ class GameLogic
   end
 
   def game_over?
-    draw? || win? || game_full
+    draw? || win? || game_full?
   end
 
   def winner
     player = ''
     player == win? ? @board[winner.first] : @players
   end
-end
-class TicTacToe < GameLogic
-  attr_reader :board
-  include WinNumbers
-  include Board
+
   def initialize
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
+
+  WIN_COMBINATIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [6, 4, 2],
+    [0, 4, 8]
+  ].freeze
 
   def user_input_to_doard(arr)
     @board[0] = arr if arr == (1..9)
@@ -63,10 +60,6 @@ class TicTacToe < GameLogic
     @players
   end
 
-  def game_over?
-    draw? || win?
-  end
-
   def win?
     WIN_COMBINATIONS.detect do |child_arr|
       @board[child_arr[0]] == @board[child_arr[1]] && @board[child_arr[1]] == @board[child_arr[2]] &&
@@ -86,15 +79,18 @@ class TicTacToe < GameLogic
     taken_spot
   end
 
+  def player_check
+    player2 if player1 != player2
+  end
+
   def user
-    play = Play.new
-    play.turn(current_player)
-    play.welcome
-    play.input
-    if valid_move?(play.input)
-      move(play.input, current_player)
-    elsif !valid_move?(play.input)
-      play.invalid
+    turn(current_player)
+    welcome
+    input
+    if valid_move?(input)
+      move(input, current_player)
+    elsif !valid_move?(input)
+      invalid
     else
       self
     end
