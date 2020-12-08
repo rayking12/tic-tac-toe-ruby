@@ -28,7 +28,6 @@ end
 
 def player2
   puts 'Hi, Welcome second player, please enter your name'
-  names
 end
 
 def welcome
