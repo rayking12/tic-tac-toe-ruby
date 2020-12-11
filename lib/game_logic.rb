@@ -1,4 +1,3 @@
-
 class GameLogic
   attr_accessor :board
   # include PlayGame
@@ -77,7 +76,7 @@ class GameLogic
     @board.all? { |i| %w[O X].include?(i) }
   end
 
-  def turn_counts(turns)
+  def turn_counts
     taken_spot = 0
     @board.each do |i|
       taken_spot += 1 if %w[X O].include?(i)
