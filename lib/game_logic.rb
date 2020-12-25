@@ -5,7 +5,7 @@ class GameLogic
   end
 
   def game_on?
-    turn_counts < 9 && !win? ? true : false
+    turn_counts < 9 && !win?
   end
 
   def draw?
